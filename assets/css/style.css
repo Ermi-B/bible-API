@@ -1,0 +1,21 @@
+:root{
+    --theme-color : rgb(87, 176, 208);
+}
+*{
+    font-family: 'Raleway', sans-serif;
+}
+header{
+    height: 10vh;
+}
+.theme-color{
+    background-color: var(--theme-color);
+    color: white;
+}
+.container{
+    background-color: rgb(231, 249, 249);
+}
+
+input::placeholder {
+    font-style: italic;
+    font-size: x-small;
+  }
