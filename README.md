@@ -1,1 +1,1 @@
-# verse-finder
+# bible-API
