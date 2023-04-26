@@ -1,18 +1,26 @@
 :root{
     --theme-color : rgb(87, 176, 208);
 }
-*{
-    font-family: 'Raleway', sans-serif;
-}
+
 header{
     height: 10vh;
+    font-family: 'Crimson Text', serif;
+}
+
+body{
+    height: 100vh;
+    background-size:100%;
+    background-position: center top -100px;    
+    background-image: url(../img/holy-bible-black-and-white.jpg);
+    backdrop-filter: blur(1px);
+    font-family: 'Noto Serif SC', serif;
 }
 .theme-color{
     background-color: var(--theme-color);
     color: white;
 }
 .container{
-    background-color: rgb(231, 249, 249);
+    background-color: rgb(217, 241, 250);
 }
 
 input::placeholder {

@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <!-- Google-fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/120b4551ce.js" crossorigin="anonymous"></script>
 
     <!-- jQUERY UI -->
     <!-- jQuery -->
@@ -30,22 +30,26 @@
   </head>
 
   <body>
-    <header class="flex justify-center items-center theme-color">
-      <h1 class="text-4xl">Bible Verse Finder</h1>
+    <header class="flex items-center theme-color">
+        <div id="logo" class="flex justify-end items-center w-1/6">
+             <i class="fa-solid fa-book-bible fa-xl"></i>
+        </div>
+        <div id="title" class="flex justify-center items-center w-2/3">
+            <h1 class="text-center font-bold text-xl sm:text-xl md:text-2xl lg:text-4xl">Bible Verse Finder</h1>
+        </div>
+      
     </header>
 
     <main>
-      <div
-        class="container flex justify-center items-center mx-auto my-5 border rounded w-1/2 p-5 shadow them"
-      >
-        <div class="flex flex-col items-center">
-          <p>Look up your favourite Bible verse right here!</p>
-          <input
-            type="text"
-            class="w-10 mt-8 mb-5 w-full border rounded text-center" placeholder="Enter verse"/>
-          <button class="button p-1 theme-color rounded">Search</button>
+
+      <div class="container flex justify-center items-center mx-auto my-5 border rounded w-full sm:w-full md:w-3/4 lg:w-3/4 p-5 shadow">
+        <div class="flex flex-col items-center w-full">
+          <p class="italic text-xs sm:text-xs md:text-sm">Look up your favourite Bible verse right here!</p>
+          <input type="text" class="mt-8 mb-5 w-3/4 border rounded text-center" placeholder="Enter key word"/>
+          <button class="button px-4 pb-1 theme-color rounded hover:scale-110 active:bg-gray-500 active:scale-100">Search</button>
         </div>
       </div>
+
     </main>
 
     <footer></footer>
