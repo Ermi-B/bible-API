@@ -3,18 +3,7 @@ var bibleVersionID = 'de4e12af7f28f599-02' //KJV
 var offset = 1
 var searchText = 'I have overcome the world.'
 var url = `https://api.scripture.api.bible/v1/bibles/${bibleVersionID}/search?query=${searchText}/`
-
-// fetch(url, {
-//   headers: {
-//     'api-key': API_KEY,
-//   },
-// })
-//   .then((data) => {
-//     return data.json()
-//   })
-//   .then((result) => {
-//     console.log(result)
-//   })
+var amhURL = 'https://raw.githubusercontent.com/magna25/amharic-bible-json/main/amharic_bible.json' //github url for amharic bible
 
 $('#search').on('click', function () {
   const input = document.getElementById('key-word')
@@ -42,4 +31,12 @@ $('#search').on('click', function () {
         console.log(result)
       })
   }
+})
+//amharic bible
+fetch(amhURL)
+.then((data)=>{
+    return data.json()
+})
+.then(res=>{
+    console.log(res.books[43].chapters[1].verses[36])   //chapters = n-1 and verses = n-2...if n is length of array
 })
