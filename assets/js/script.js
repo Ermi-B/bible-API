@@ -20,7 +20,12 @@ $('#search').on('click', function () {
   const input = document.getElementById('key-word')
   input.setAttribute('required', '')
   let searchText = input.value
-  if (searchText === null || searchText === undefined) {
+  if (
+    searchText === null ||
+    searchText === undefined ||
+    searchText.length <= 0
+  ) {
+    alert('Please provide a key word!')
   } else {
     fetch(
       `https://api.scripture.api.bible/v1/bibles/${bibleVersionID}/search?query=${searchText}/`,
