@@ -38,5 +38,5 @@ fetch(amhURL)
     return data.json()
 })
 .then(res=>{
-    console.log(res.books[43].chapters[1].verses[36])   //chapters = n-1 and verses = n-2...if n is length of array
+    console.log(res.books[43].chapters[1].verses[36])   //books = n-1/chapters = n-1/verses = n-1 or n-2...if n is length of array//acts 2:38 = books[43].chapters[1].verses[36]
 })
