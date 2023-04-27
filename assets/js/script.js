@@ -5,10 +5,17 @@ var searchText = 'I have overcome the world.'
 var url = `https://api.scripture.api.bible/v1/bibles/${bibleVersionID}/search?query=${searchText}/`
 var amhURL = 'https://raw.githubusercontent.com/magna25/amharic-bible-json/main/amharic_bible.json' //github url for amharic bible
 
-$('#search').on('click', function () {
-  const input = document.getElementById('key-word')
-  input.setAttribute('required', '')
-  let searchText = input.value
+//SELECTORS
+const inputEl = $('#key-word')
+const searchBtn = $('#search')
+const searchResult = $('#search-result')  //list element
+const searchContainer = $('#search-container')//list entire div (container)
+
+
+
+searchBtn.on('click', function () {
+  inputEl.attr('required', '')
+  let searchText = inputEl.val()
   if (
     searchText === null ||
     searchText === undefined ||
@@ -16,6 +23,7 @@ $('#search').on('click', function () {
   ) {
     alert('Please provide a key word!')
   } else {
+    
     fetch(
       `https://api.scripture.api.bible/v1/bibles/${bibleVersionID}/search?query=${searchText}/`,
       {
@@ -28,7 +36,28 @@ $('#search').on('click', function () {
         return data.json()
       })
       .then((result) => {
-        console.log(result)
+        const verseInfo = result.data.verses //verseInfo is array of objects and holds everyu detail       
+
+        searchResult.empty()
+        searchContainer.removeClass('hidden') //displays the container for search result
+
+        verseInfo.forEach(verse =>{
+          const chapterId = verse.chapterId //JHN.16
+          const verseId = verse.id          //JHN.16.33
+          const textContent = verse.text    //These things I have spoken unto you, that in me ye might have peace...
+          const reference = verse.reference //John 16:33
+
+          
+          
+          const liEl = $("<li>",{
+            'class':'w-full bg-white font-bold rounded my-2 px-4 py-1 shadow'
+          })
+          const pEl = $("<p>",{'class':'italic text-xs font-light'})
+          pEl.text(textContent)
+          liEl.text(reference)
+          liEl.append(pEl)
+          searchResult.append(liEl)
+        })
       })
   }
 })
