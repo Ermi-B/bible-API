@@ -13,9 +13,20 @@ const searchContainer = $('#search-container')//list entire div (container)
 var languageSelection = $('#language-selection');
 let resultArray = [] //holds amharic ssearch results
 
+searchBtn.on('click', function (e) {
+   e.preventDefault()
+   if(languageSelection.val()=='en'){
+        searchEnglishVerse()   
+   }else if(languageSelection.val()=='am'){
+    getAmharicBible()
+        
+   }
+})
+
+
 function searchEnglishVerse(){  
-  searchBtn.on('click', function (e) {
-    e.preventDefault()
+
+   
     inputEl.attr('required', '')
     const searchText = inputEl.val()
     if (
@@ -41,7 +52,7 @@ function searchEnglishVerse(){
         })
   
     }
-  })
+
 }
 
 //display Verse function
@@ -91,7 +102,14 @@ function displayVerse (result,searchText){
     searchBtn.on('click',function(e){
       e.preventDefault()
       const searchText = inputEl.val()
-      fetch(amhURL)
+      if (
+        searchText === null ||
+        searchText === undefined ||
+        searchText.length <= 0
+      ) {
+        alert('እባክዎ ቁልፍ ቃል ያስገቡ')
+      }else{
+         fetch(amhURL)
       .then((data)=>{
           return data.json()
       })
@@ -100,6 +118,8 @@ function displayVerse (result,searchText){
         searchAmharicVerse(res,searchText)
         displayAmharicVerse()
       })
+      }
+     
     })
      
   }
@@ -154,18 +174,20 @@ function displayVerse (result,searchText){
     var language = languageSelection.val();
     console.log(language)
     if(language =='am'){
+        console.log('changed to ',language)
        searchBtn.text('ፈልግ')
-       getAmharicBible()
+       
     }else if(language =='en'){
+      console.log('changed to ',language)
       searchBtn.text('Search')
-      searchEnglishVerse()
+      
     }
 
    
     
     
   }
-
+ 
   function displayAmharicVerse(){
    
     searchResult.empty()
@@ -204,3 +226,4 @@ function displayVerse (result,searchText){
     searchResult.append(liEl)
     
   }
+
