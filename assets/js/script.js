@@ -14,11 +14,13 @@ var languageSelection = $('#language-selection');
 let resultArray = [] //holds amharic ssearch results
 
 searchBtn.on('click', function (e) {
-   e.preventDefault()
+  e.preventDefault()
+  $('.loading').removeClass('hidden')   
    if(languageSelection.val()=='en'){
         searchEnglishVerse()   
    }else if(languageSelection.val()=='am'){
     getAmharicBible()
+    $('.loading').addClass('hidden')
         
    }
 })
@@ -48,7 +50,13 @@ function searchEnglishVerse(){
           return data.json()
         })
         .then((result) => {
+         
           displayVerse(result,searchText)
+          $('.loading').addClass('hidden')
+          if(result.data.verses.length === 0){
+            matchNotFound()
+            
+          }
         })
   
     }
@@ -62,7 +70,7 @@ function displayVerse (result,searchText){
 
   searchResult.empty()
   searchContainer.removeClass('hidden') //displays the container for search result
-
+  $('.loading').removeClass('hidden')
   verseInfo.forEach(verse =>{
     const chapterId = verse.chapterId //JHN.16
     const verseId = verse.id          //JHN.16.33
@@ -91,12 +99,6 @@ function displayVerse (result,searchText){
   })
 }
 
-
-
-
-
-
-
   function getAmharicBible(){
     //amharic bible
     searchBtn.on('click',function(e){
@@ -117,6 +119,9 @@ function displayVerse (result,searchText){
         console.log(res)
         searchAmharicVerse(res,searchText)
         displayAmharicVerse()
+        if(resultArray.length===0){
+          matchNotFound()
+        }
       })
       }
      
@@ -155,17 +160,11 @@ function displayVerse (result,searchText){
               }
               return acc;
             },null)
-            if(result!== null){
-              console.log('match found')
-              console.log(resultArray)
-            }else{
-              console.log('not found')
-              matchNotFound();
-            }
+            
             
           })
         })     
-          
+         
   }
 //language
  
@@ -213,17 +212,16 @@ function displayVerse (result,searchText){
   }
 
   function matchNotFound(){
+    console.log('match not found')
     searchResult.empty()
     searchContainer.removeClass('hidden') //displays the container for search result
 
-    const liEl = $("<li>",{
-      'class':'w-full bg-white font-bold rounded my-2 px-4 py-1 shadow'
-    })
-    const pEl = $("<p>",{'class':'italic text-xs font-light'})
-    pEl.text('Try again!')
-    liEl.text('Match not Found')
-    liEl.append(pEl)
-    searchResult.append(liEl)
+    
+    const pEl = $("<p>",{'class':'italic text-xs text-center font-light'})
+    pEl.text('Match not found!')
+
+    
+    searchResult.append(pEl)
     
   }
 
