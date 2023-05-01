@@ -217,7 +217,7 @@ function displayVerse (result,searchText){
     searchContainer.removeClass('hidden') //displays the container for search result
 
     
-    const pEl = $("<p>",{'class':'italic text-xs text-center font-light'})
+    const pEl = $("<p>",{'class':'italic text-xs text-center font-light text-red-500'})
     pEl.text('Match not found!')
 
     
